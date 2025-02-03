@@ -1,0 +1,60 @@
+body {
+    margin: 0;
+    height: 200vh; 
+    background-image: linear-gradient(135deg,#99b6c6 14%,#bcd8e5 78%);
+}
+svg {
+    position: fixed;
+    top: 0;
+    left: 120px; 
+    width: calc(100% - 240px);
+    height: 100%;
+}
+.line-progress {
+    stroke: #9370DB; 
+    stroke-width: 3;
+    stroke-dasharray: 10000; 
+    stroke-dashoffset: 10000;
+    transition: stroke-dashoffset 0.5s ease-out; 
+}
+.line-background {
+    stroke: #E5E6E8;
+    stroke-width: 3;
+}
+.point {
+    fill: #9370DB; 
+    opacity: 0; 
+    transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+    r: 8; 
+}
+.point-circle {
+    fill: none;
+    stroke: #C3A4E0;
+    stroke-width: 2;
+    r: 12; 
+    opacity: 0; 
+    transition: opacity 0.5s ease-out, transform 0.5s ease-out; 
+}
+.point.active {
+    opacity: 1; 
+}
+.point-circle.active {
+    opacity: 1;
+}
+.text-group {
+    opacity: 0; 
+    transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+}
+.text-group.active {
+    opacity: 1;
+    
+}
+.text-date {
+    font-size: 24px;
+    font-weight: bold;
+    fill: #5e8094; 
+}
+.text-description {
+    font-size: 24px;
+    fill: #333; 
+}

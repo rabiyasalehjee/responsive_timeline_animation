@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Timeline Animation</title>
+    <link rel="stylesheet" href="stylesheet.css" />
+  </head>
+  <body>
+    <svg id="responsive-svg" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path class="line-background"></path>
+
+      <path class="line-progress"></path>
+
+      <g class="point-group">
+        <circle class="point-circle" cx="0" cy="0"></circle>
+        <circle class="point" cx="0" cy="0"></circle>
+        <g class="text-group" transform="translate(0, 0)">
+            <text class="text-date" x="0" y="-70">1957-10-04</text>
+            <text class="text-description" x="0" y="-30">Sputnik 1 Launch</text>
+            <text class="text-description" x="0" y="0">The first artificial satellite was launched by the USSR.</text>    
+        </g>
+      </g>
+      <g class="point-group">
+        <circle class="point-circle" cx="0" cy="0"></circle>
+        <circle class="point" cx="0" cy="0"></circle>
+        <g class="text-group" transform="translate(0, 0)">
+            <text class="text-date" x="0" y="-70">1961-04-12</text>
+            <text class="text-description" x="0" y="-30">First Human in Space</text>
+            <text class="text-description" x="0" y="0">Yuri Gagarin became the first human to orbit the Earth.</text>
+        
+        </g>
+      </g>
+      <g class="point-group">
+        <circle class="point-circle" cx="0" cy="0"></circle>
+        <circle class="point" cx="0" cy="0"></circle>
+        <g class="text-group" transform="translate(0, 0)">
+            <text class="text-date" x="0" y="-70">1969-07-20</text>
+            <text class="text-description" x="0" y="-30">Moon Landing</text>
+            <text class="text-description" x="0" y="0">Neil Armstrong and Buzz Aldrin walked on the Moon.</text>
+       </g>
+      </g>
+      <g class="point-group">
+        <circle class="point-circle" cx="0" cy="0"></circle>
+        <circle class="point" cx="0" cy="0"></circle>
+        <g class="text-group" transform="translate(0, 0)">
+            <text class="text-date" x="0" y="-70">1998-11-20</text>
+            <text class="text-description" x="0" y="-30">International Space Station</text>
+            <text class="text-description" x="0" y="0">The first module of the ISS was launched.</text>
+          </g>
+      </g>
+      <g class="point-group">
+        <circle class="point-circle" cx="0" cy="0"></circle>
+        <circle class="point" cx="0" cy="0"></circle>
+        <g class="text-group" transform="translate(0, 0)">
+            <text class="text-date" x="0" y="-20">2012-08-06</text>
+            <text class="text-description" x="0" y="10">Curiosity Rover Lands</text>
+            <text class="text-description" x="0" y="40">NASA's Curiosity rover landed on Mars.</text>
+         </g>
+      </g>
+      <g class="point-group">
+        <circle class="point-circle" cx="0" cy="0"></circle>
+        <circle class="point" cx="0" cy="0"></circle>
+        <g class="text-group" transform="translate(0, 0)">
+            <text class="text-date" x="0" y="-20">2021-02-18</text>
+            <text class="text-description" x="0" y="10">Perseverance Rover</text>
+            <text class="text-description" x="0" y="40">NASA's Perseverance rover landed on Mars.</text>
+         </g>
+      </g>
+      <g class="point-group">
+        <circle class="point-circle" cx="0" cy="0"></circle>
+        <circle class="point" cx="0" cy="0"></circle>
+        <g class="text-group" transform="translate(0, 0)">
+            <text class="text-date" x="0" y="-20">2024-01-01</text>
+            <text class="text-description" x="0" y="10">Artemis Program</text>
+            <text class="text-description" x="0" y="40">NASA aims to the Moon.</text>
+        </g>
+      </g>
+      <g class="point-group">
+        <circle class="point-circle" cx="0" cy="0"></circle>
+        <circle class="point" cx="0" cy="0"></circle>
+        <g class="text-group" transform="translate(0, 0)">
+            <text class="text-date" x="0" y="-20">2025-11-11</text>
+            <text class="text-description" x="0" y="10">UFO Program</text>
+            <text class="text-description" x="0" y="40">UFO charity program.</text>
+       </g>
+      </g>
+    </svg>
+
+    <script>
+      function generatePath() {
+        const svg = document.getElementById("responsive-svg");
+        const pathBackground = svg.querySelector(".line-background");
+        const pathProgress = svg.querySelector(".line-progress");
+
+        const windowWidth = window.innerWidth - 240;
+        const startX = windowWidth / 2;
+        const startY = 133;
+        const curveRadius = 50;
+        const horizontalStretch1 = 349;
+        const horizontalStretch2 = 338;
+        const horizontalTotal = windowWidth;
+
+        const originalVerticalHeight = 300;
+        const additionalHeightPerPoint = 130;
+        const numAdditionalPoints = 4;
+        const adjustedVerticalHeight =
+          originalVerticalHeight +
+          additionalHeightPerPoint * numAdditionalPoints;
+
+        const pathData = `
+                M${startX} ${startY}
+                v200
+                a${curveRadius} ${curveRadius} 0 0 0 ${curveRadius} ${curveRadius}
+                h${horizontalStretch1}
+                a${curveRadius} ${curveRadius} 0 0 1 ${curveRadius} ${curveRadius}
+                v200
+                a${curveRadius} ${curveRadius} 0 0 1 -${curveRadius} ${curveRadius}
+                h-${horizontalTotal}
+                a${curveRadius} ${curveRadius} 0 0 0 -${curveRadius} ${curveRadius}
+                v${adjustedVerticalHeight} 
+                a${curveRadius} ${curveRadius} 0 0 0 ${curveRadius} ${curveRadius}
+                h${horizontalStretch2}
+            `;
+
+        pathBackground.setAttribute("d", pathData);
+        pathProgress.setAttribute("d", pathData);
+
+        const pointGroups = svg.querySelectorAll(".point-group");
+        const pathLength = pathProgress.getTotalLength();
+
+        const pointPositions = [0.1, 0.39, 0.57, 0.67, 0.75, 0.81, 0.87, 1.0];
+
+        pointGroups.forEach((group, index) => {
+          if (index < pointPositions.length) {
+            const position = pathLength * pointPositions[index];
+            const pointCoords = pathProgress.getPointAtLength(position);
+            const point = group.querySelector(".point");
+            const pointCircle = group.querySelector(".point-circle");
+            const textGroup = group.querySelector(".text-group");
+
+            point.setAttribute("cx", pointCoords.x);
+            point.setAttribute("cy", pointCoords.y);
+            pointCircle.setAttribute("cx", pointCoords.x);
+            pointCircle.setAttribute("cy", pointCoords.y);
+
+            textGroup.setAttribute(
+              "transform",
+              `translate(${pointCoords.x + 20}, ${pointCoords.y - 20})`
+            );
+          }
+        });
+
+        const bbox = pathProgress.getBBox();
+        const padding = 20;
+        svg.setAttribute(
+          "viewBox",
+          `${bbox.x - padding} ${bbox.y - padding} ${
+            bbox.width + 2 * padding
+          } ${bbox.height + 2 * padding}`
+        );
+      }
+
+      function setupLineAnimation() {
+        const path = document.querySelector(".line-progress");
+        const pointGroups = document.querySelectorAll(".point-group");
+        const pathLength = path.getTotalLength();
+
+        path.style.strokeDasharray = pathLength;
+        path.style.strokeDashoffset = pathLength;
+
+        window.addEventListener("scroll", () => {
+          const scrollPercentage =
+            (window.scrollY /
+              (document.body.scrollHeight - window.innerHeight)) *
+            100;
+          const drawLength = (pathLength * scrollPercentage) / 100;
+
+          path.style.strokeDashoffset = pathLength - drawLength;
+
+          pointGroups.forEach((group, index) => {
+            const point = group.querySelector(".point");
+            const pointCircle = group.querySelector(".point-circle");
+            const textGroup = group.querySelector(".text-group");
+            const pointPosition =
+              pathLength *
+              [0.1, 0.39, 0.57, 0.67, 0.75, 0.81, 0.87, 1.0][index];
+
+            if (drawLength >= pointPosition) {
+              point.classList.add("active");
+              pointCircle.classList.add("active");
+              textGroup.classList.add("active");
+            } else {
+              point.classList.remove("active");
+              pointCircle.classList.remove("active");
+              textGroup.classList.remove("active");
+            }
+          });
+        });
+      }
+      function makeSvgResponsive() {
+        window.addEventListener("resize", () => {
+          generatePath();
+          setupLineAnimation();
+        });
+        generatePath();
+      }
+
+      generatePath();
+      setupLineAnimation();
+      makeSvgResponsive();
+    </script>
+  </body>
+</html>
